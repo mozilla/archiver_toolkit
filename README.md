@@ -1,2 +1,1 @@
-archiver_toolkit
-================
+wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent --convert-links --no-host-directories -P www.mozilla.org/devpreview_releasenotes http://www.mozilla.org/projects/devpreview/releasenotes/
