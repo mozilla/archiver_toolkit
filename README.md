@@ -24,10 +24,7 @@ The goal of this effort is to add something to the repository. Use wget to spide
 1. `www.mozilla.org/devpreview_releasenotes`: this should adjusted to `www.mozilla.org/some_descriptive_folder_name`
 2. `http://www.mozilla.org/projects/devpreview/releasenotes/`: this should adjusted to `http://www.mozilla.org/the_path_to_the_folder_you_are_archiving`
 
-    wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent \
-    --convert-links --no-host-directories -P \
-    www.mozilla.org/devpreview_releasenotes \
-    http://www.mozilla.org/projects/devpreview/releasenotes/
+        wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent --convert-links --no-host-directories -P www.mozilla.org/devpreview_releasenotes http://www.mozilla.org/projects/devpreview/releasenotes/
 
 ## 5. Process the HTML you just retrieved 
 
