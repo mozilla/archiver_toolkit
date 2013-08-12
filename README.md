@@ -24,8 +24,8 @@ In the github folder you created in step 2, checkout the SVN folder that contain
 
 The goal of this effort is to add something to the website-archive SVN tree. Use wget to spider a subdirectory of www.mozilla.org. The below command does it exactly right. It contains two parameters you must adjust:
 
-a. `www.mozilla.org/devpreview_releasenotes` should be adjusted to `www.mozilla.org/some_descriptive_folder_name`
-b. `http://www.mozilla.org/projects/devpreview/releasenotes/` should be adjusted to `http://www.mozilla.org/the_path_to_the_folder_you_are_archiving`
+* `www.mozilla.org/devpreview_releasenotes` should be adjusted to `www.mozilla.org/some_descriptive_folder_name`
+* `http://www.mozilla.org/projects/devpreview/releasenotes/` should be adjusted to `http://www.mozilla.org/the_path_to_the_folder_you_are_archiving`
 
         wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent --convert-links --no-host-directories \
         -P www.mozilla.org/devpreview_releasenotes \
@@ -35,17 +35,17 @@ b. `http://www.mozilla.org/projects/devpreview/releasenotes/` should be adjusted
 
 We like to make a handful of minor changes to archived content. We get rid of the search tool, since it is not guaranteed to work forever. And we add a message at the top of the page explaining that the content is archived. The archiver_toolkit repository contains a python command-line tool that processes these files. To run it...
 
-a.(optional) Set up a virtualenv to isolate this repository's libraries from your system libraries: 
+1. (optional) Set up a virtualenv to isolate this repository's libraries from your system libraries: 
 
-    virtualenv --no-site-packages venv && . venv/bin/activate
+        virtualenv --no-site-packages venv && . venv/bin/activate
 
-b. Install required libraries: 
+2. Install required libraries: 
     
-    pip install -r requirements.txt
+        pip install -r requirements.txt
 
-c.Run the script. Pass it the path to the new content:
+3. Run the script. Pass it the path to the new content:
     
-    python process_files.py www.mozilla.org/some_descriptive_folder_name/
+        python process_files.py www.mozilla.org/some_descriptive_folder_name/
     
 ### 6. Review the processed code
 
@@ -75,13 +75,12 @@ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/proje
 
 Requests for the archived content at www.mozilla.org should now be redirected to the archival site. This requires changes to the .htaccess file in the Bedrock code repository (see ["How to Contribute"](http://bedrock.readthedocs.org/en/latest/contribute.html)). If you are not comfortable with this step, you can open a new bug for this change.
 
-a. Clone the [Bedrock code repository](https://github.com/mozilla/bedrock/)
+1. Clone the [Bedrock code repository](https://github.com/mozilla/bedrock/)
+2. Change the etc/httpd/global.conf file -- add a valid RewriteRule (see [Apache documentation](http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html#rewriterule)). In the example above, this would be...
 
-b. Change the etc/httpd/global.conf file -- add a valid RewriteRule (see [Apache documentation](http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html#rewriterule)). In the example above, this would be...
+        RewriteRule ^/projects/devpreview/releasenotes(.*)$ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/releasenotes$1 [L,R=301]
 
-    RewriteRule ^/projects/devpreview/releasenotes(.*)$ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/releasenotes$1 [L,R=301]
-
-c. Commit your changes and submit a pull request.
+3. Commit your changes and submit a pull request.
 
 ### 10. Verify the redirect
 
@@ -91,9 +90,9 @@ Once the new RewriteRule is in production, requests to the original URL should r
 
 The final step is to remove the old content from the www.mozilla.org SVN tree. If you are not comfortable with this step, you can open a new bug for this change.
 
-a. Checkout the relevant SVN tree ([.org](http://svn.mozilla.org/projects/mozilla.org/trunk/), [.com](http://svn.mozilla.org/projects/mozilla.com/trunk/)).  
+1. Checkout the relevant SVN tree ([.org](http://svn.mozilla.org/projects/mozilla.org/trunk/), [.com](http://svn.mozilla.org/projects/mozilla.com/trunk/)).  
 
-b. Remove the folder you've archived.
+2. Remove the folder you've archived.
 
-c. Commit your changes.
+3. Commit your changes.
 
