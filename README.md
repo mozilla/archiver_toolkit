@@ -22,14 +22,16 @@ In the github folder you created in step 2, checkout the SVN folder that contain
 
 The goal of this effort is to add something to the website-archive SVN tree. Use wget to spider a subdirectory of www.mozilla.org. The below command does it exactly right. It contains two parameters you must adjust:
 
-1. `www.mozilla.org/devpreview_releasenotes`: this should adjusted to `www.mozilla.org/some_descriptive_folder_name`
-2. `http://www.mozilla.org/projects/devpreview/releasenotes/`: this should adjusted to `http://www.mozilla.org/the_path_to_the_folder_you_are_archiving`
+1. `www.mozilla.org/devpreview_releasenotes`: this should be adjusted to `www.mozilla.org/some_descriptive_folder_name`
+2. `http://www.mozilla.org/projects/devpreview/releasenotes/`: this should be adjusted to `http://www.mozilla.org/the_path_to_the_folder_you_are_archiving`
 
-        wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent --convert-links --no-host-directories -P www.mozilla.org/devpreview_releasenotes http://www.mozilla.org/projects/devpreview/releasenotes/
+        wget -e robots=off -w 1 --mirror -p --adjust-extension --no-parent --convert-links --no-host-directories \
+        -P www.mozilla.org/devpreview_releasenotes \
+        http://www.mozilla.org/projects/devpreview/releasenotes/
 
 ### 5. Process the HTML you just retrieved 
 
-There are a handful of minor changes we like to make to archived content. We like to get rid of the search tool, since it is not guaranteed to work forever. And we like to add a message at the top of the page explaining that the content is archived. The archiver_toolkit repository contains a python command that processes these files. To run it...
+There are a handful of minor changes we like to make to archived content. We like to get rid of the search tool, since it is not guaranteed to work forever. And we like to add a message at the top of the page explaining that the content is archived. The archiver_toolkit repository contains a python command-line tool that processes these files. To run it...
 
 1.(optional) Set up a virtualenv to isolate this repository's libraries from your system libraries: 
 
