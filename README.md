@@ -1,11 +1,12 @@
 # How to archive content from mozilla.org 
 
-### 1. Get commit access to mozilla.org/mozilla.com and website-archive trees in SVN 
+### 1. Get commit access to the necessary source trees in SVN 
 
 * If you are not already a Mozilla committer, you will need to go through the standard commit process: <http://www.mozilla.org/hacking/committer/>
-* Then you can file a bug to get access to the www.mozilla.org tree. Here is a bug template: <http://mzl.la/17JeXr4>
-* You can also file a bug to get access to the website-archive tree. Here is a bug template: <http://mzl.la/1bcLR7d>
+* Then you can file a bug to get access to the website-archive tree. Here is a bug template: <http://mzl.la/1bcLR7d>
 * You will need your access to be approved (in the bug) by someone with authority over the content. Jennifer Bertsch, Chris More, or David Boswell can all vouch for you.
+
+If you intend to also delete this content from its original location (see the last step), file a bug to get access to the mozilla.org/mozilla.com SVN trees. Here is a bug template: <http://mzl.la/17JeXr4>
 
 ### 2. Clone the archiver repository 
 
@@ -75,6 +76,7 @@ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/proje
 Requests for the archived content at www.mozilla.org should now be redirected to the archival site. This requires changes to the .htaccess file in the Bedrock code repository (see ["How to Contribute"](http://bedrock.readthedocs.org/en/latest/contribute.html)). If you are not comfortable with this step, you can open a new bug for this change.
 
 a. Clone the [Bedrock code repository](https://github.com/mozilla/bedrock/)
+
 b. Change the etc/httpd/global.conf file -- add a valid RewriteRule (see [Apache documentation](http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html#rewriterule)). In the example above, this would be...
 
     RewriteRule ^/projects/devpreview/releasenotes(.*)$ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/releasenotes$1 [L,R=301]
@@ -90,6 +92,8 @@ Once the new RewriteRule is in production, requests to the original URL should r
 The final step is to remove the old content from the www.mozilla.org SVN tree. If you are not comfortable with this step, you can open a new bug for this change.
 
 a. Checkout the relevant SVN tree ([.org](http://svn.mozilla.org/projects/mozilla.org/trunk/), [.com](http://svn.mozilla.org/projects/mozilla.com/trunk/)).  
+
 b. Remove the folder you've archived.
+
 c. Commit your changes.
 
