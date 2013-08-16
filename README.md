@@ -73,7 +73,7 @@ http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/proje
 
 ### 9. Redirect the original content to the archives 
 
-Requests for the archived content at www.mozilla.org should now be redirected to the archival site. This requires changes to the .htaccess file in the Bedrock code repository (see ["How to Contribute"](http://bedrock.readthedocs.org/en/latest/contribute.html)). If you are not comfortable with this step, you can open a new bug for this change.
+Requests for the archived content at www.mozilla.org should now be redirected to the archival site. This requires changes to the global.conf file in the Bedrock code repository (see ["How to Contribute"](http://bedrock.readthedocs.org/en/latest/contribute.html#getting-a-new-bedrock-page-online)). If you are not comfortable with this step, you can open a new bug for this change.
 
 1. Clone the [Bedrock code repository](https://github.com/mozilla/bedrock/)
 2. Change the etc/httpd/global.conf file -- add a valid RewriteRule (see [Apache documentation](http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html#rewriterule)). In the example above, this would be...
@@ -95,4 +95,6 @@ The final step is to remove the old content from the www.mozilla.org SVN tree. I
 2. Remove the folder you've archived.
 
 3. Commit your changes.
+
+4. Work with the Web Productions team to get your changes merged onto the staging and production systems.
 
