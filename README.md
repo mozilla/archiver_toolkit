@@ -12,7 +12,7 @@ If you intend to also delete this content from its original location (see the la
 
 If you're reading this README, you're in the right place. Clone this repo:
 
-    git clone https://github.com/hoosteeno/archiver_toolkit.git
+    git clone https://github.com/mozilla/archiver_toolkit.git
 
 ### 3. Checkout the website-archive SVN tree 
 
